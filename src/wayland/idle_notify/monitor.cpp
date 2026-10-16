@@ -27,9 +27,11 @@ void IdleMonitor::onPostReload() {
 }
 
 void IdleMonitor::updateNotification() {
-	auto* notification = this->bNotification.value();
-	delete notification;
-	notification = nullptr;
+	auto* oldNotification = this->bNotification.value();
+	this->bNotification = nullptr;
+	delete oldNotification;
+
+	impl::IdleNotification* notification = nullptr;
 
 	auto guard = qScopeGuard([&, this] { this->bNotification = notification; });
 
