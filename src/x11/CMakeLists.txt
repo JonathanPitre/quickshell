@@ -11,9 +11,7 @@ qt_add_qml_module(quickshell-x11
 	DEPENDENCIES QtQuick
 )
 
-if(I3)
-	add_subdirectory(i3)
-endif()
+qs_add_module_deps_light(quickshell-x11 quickshell-core quickshell-window)
 
 install_qml_module(quickshell-x11)
 
